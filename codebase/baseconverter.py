@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(343, 197)
+        MainWindow.resize(350, 200)
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -100,7 +100,7 @@ class Ui_MainWindow(object):
         self.toLabel.setText(_translate("MainWindow", "to"))
 
     def submitted(self):
-        self.targetLine.setText(str(self.convert))
+        self.targetLine.setText(str(self.convert()))
 
 # TO-DO: fix return value of convert() and submitted()
 # current config does not output float, rather
@@ -108,9 +108,12 @@ class Ui_MainWindow(object):
 # <__main__.Ui_MainWindow object at 0x10da0dee0>>
 
     def convert(self):
-        originValue = float(self.originLine.value())
+        originValue = float(self.originLine.text())
         originBase = float(self.originSpinBox.value())
         targetBase = float(self.targetSpinBox.value())
+        print(originValue)
+        print(originBase)
+        print(targetBase)
         result = float(originValue + originBase + targetBase)
         
         return result
