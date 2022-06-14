@@ -15,51 +15,73 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(343, 197)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.submitButton = QtWidgets.QPushButton(self.centralwidget)
         self.submitButton.setGeometry(QtCore.QRect(250, 120, 51, 20))
         self.submitButton.setObjectName("submitButton")
+        self.submitButton.clicked.connect(self.submitted)
+
         self.originLabel = QtWidgets.QLabel(self.centralwidget)
         self.originLabel.setGeometry(QtCore.QRect(10, 10, 61, 16))
+
         font = QtGui.QFont()
         font.setFamily("Menlo")
         font.setPointSize(14)
+
         self.originLabel.setFont(font)
         self.originLabel.setObjectName("originLabel")
+
         self.targetLabel = QtWidgets.QLabel(self.centralwidget)
         self.targetLabel.setGeometry(QtCore.QRect(10, 120, 61, 16))
+
         font = QtGui.QFont()
         font.setFamily("Menlo")
         font.setPointSize(14)
+
         self.targetLabel.setFont(font)
         self.targetLabel.setObjectName("targetLabel")
+
         self.originSpinBox = QtWidgets.QSpinBox(self.centralwidget)
         self.originSpinBox.setGeometry(QtCore.QRect(100, 50, 41, 21))
         self.originSpinBox.setObjectName("originSpinBox")
+
         self.targetSpinBox = QtWidgets.QSpinBox(self.centralwidget)
         self.targetSpinBox.setGeometry(QtCore.QRect(260, 50, 41, 21))
         self.targetSpinBox.setObjectName("targetSpinBox")
+
         self.baseLabel = QtWidgets.QLabel(self.centralwidget)
         self.baseLabel.setGeometry(QtCore.QRect(10, 50, 41, 16))
+
         font = QtGui.QFont()
         font.setFamily("Menlo")
         font.setPointSize(14)
+
         self.baseLabel.setFont(font)
         self.baseLabel.setObjectName("baseLabel")
+
         self.toLabel = QtWidgets.QLabel(self.centralwidget)
         self.toLabel.setGeometry(QtCore.QRect(190, 50, 16, 16))
+
         font = QtGui.QFont()
         font.setFamily("Menlo")
         font.setPointSize(14)
+
         self.toLabel.setFont(font)
         self.toLabel.setObjectName("toLabel")
+
         self.originLine = QtWidgets.QLineEdit(self.centralwidget)
         self.originLine.setGeometry(QtCore.QRect(80, 10, 131, 21))
+        self.originLine.setPlaceholderText("")
         self.originLine.setObjectName("originLine")
+
         self.targetLine = QtWidgets.QLineEdit(self.centralwidget)
         self.targetLine.setGeometry(QtCore.QRect(80, 120, 131, 21))
+        self.targetLine.setReadOnly(True)
         self.targetLine.setObjectName("targetLine")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -77,6 +99,21 @@ class Ui_MainWindow(object):
         self.baseLabel.setText(_translate("MainWindow", "Base:"))
         self.toLabel.setText(_translate("MainWindow", "to"))
 
+    def submitted(self):
+        self.targetLine.setText(str(self.convert))
+
+# TO-DO: fix return value of convert() and submitted()
+# current config does not output float, rather
+# <bound method Ui_MainWindow.convert of 
+# <__main__.Ui_MainWindow object at 0x10da0dee0>>
+
+    def convert(self):
+        originValue = float(self.originLine.value())
+        originBase = float(self.originSpinBox.value())
+        targetBase = float(self.targetSpinBox.value())
+        result = float(originValue + originBase + targetBase)
+        
+        return result
 
 if __name__ == "__main__":
     import sys
@@ -86,3 +123,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
