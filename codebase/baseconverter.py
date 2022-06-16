@@ -102,19 +102,38 @@ class Ui_MainWindow(object):
     def submitted(self):
         self.targetLine.setText(str(self.convert()))
 
-# TO-DO: fix return value of convert() and submitted()
-# current config does not output float, rather
-# <bound method Ui_MainWindow.convert of 
-# <__main__.Ui_MainWindow object at 0x10da0dee0>>
+    # TO-DO: Fix conversion method, for example (base 6) 55 to (base 9)
+    # Base 6 to decimal calculation:
+
+    # (base 6) 55 = (5 × 6^1) + (5 × 6^0) = (base 10) 35
+
+    # Decimal to base 9 calculation:
+
+    # Divide by the base to get the digits from the remainders:
+
+    # 35 % 9 = 8
+    # 3 % 9 = 3
+
+    # store in list -> reverse
+
+    # = (base 9) 38
 
     def convert(self):
         originValue = float(self.originLine.text())
         originBase = float(self.originSpinBox.value())
         targetBase = float(self.targetSpinBox.value())
-        print(originValue)
-        print(originBase)
-        print(targetBase)
-        result = float(originValue + originBase + targetBase)
+
+        targetValue = []
+
+        while (originValue >= 0.99):
+            mod = str(originValue % targetBase)
+            targetValue.append(mod)
+            originValue = originValue / targetBase
+
+        targetValue.reverse()
+
+        print(targetValue)
+        result = targetValue
         
         return result
 
