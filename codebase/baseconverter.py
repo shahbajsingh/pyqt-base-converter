@@ -154,9 +154,7 @@ class Ui_MainWindow(object):
         decimalized = 0
 
         for element in range(len(numArr)):
-            # decimalized += numArr[j] ^ float(i)
-            # TypeError: unsupported operand type(s) for ^: 'float' and 'float'
-            decimalized += numArr[j] ^ float(i)
+            decimalized += numArr[j] **i
             i-=1
             j+=1
 
