@@ -119,6 +119,8 @@ class Ui_MainWindow(object):
 
     # = (base 9) 38
 
+    # TO-DO: reconfig for integers
+
     def convert(self):
         originValue = float(self.originLine.text())
         originBase = float(self.originSpinBox.value())
@@ -154,7 +156,7 @@ class Ui_MainWindow(object):
         decimalized = 0
 
         for element in range(len(numArr)):
-            decimalized += numArr[j] **i
+            decimalized += numArr[j] * (originBase **i)
             i-=1
             j+=1
 
