@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
 
     # = (base 9) 38
 
-    # TO-DO: reconfig for integers
+    # && reconfig for integers
 
     def convert(self):
         originValue = float(self.originLine.text())
@@ -129,11 +129,10 @@ class Ui_MainWindow(object):
         if(originBase != 10):
             originValue = self.convertToBase10()
         
-
         targetValue = []
 
         while (originValue >= 0.99):
-            mod = str(originValue % targetBase)
+            mod = str(originValue % targetBase) # TO-DO: configure .__floor__ for mod (currently returns object)
             targetValue.append(mod)
             originValue = originValue / targetBase
 
@@ -147,13 +146,11 @@ class Ui_MainWindow(object):
     def convertToBase10(self):
         originValue = self.originLine.text()
         originBase = float(self.originSpinBox.value())
-        targetBase = float(self.targetSpinBox.value())
 
         numArr = [float(num) for num in originValue]
 
         i = len(numArr) - 1
-        j = 0
-        decimalized = 0
+        j, decimalized = 0, 0
 
         for element in range(len(numArr)):
             decimalized += numArr[j] * (originBase **i)
