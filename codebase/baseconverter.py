@@ -163,4 +163,6 @@ if __name__ == "__main__":
     MainWindow.show()
     sys.exit(app.exec_())
 
-    # TO-DO: add error handling for invalid input
+    # TO-DO: 
+    # add error handling for invalid input
+    # configure numbering for base 11 and beyond
