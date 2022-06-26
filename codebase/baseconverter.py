@@ -131,8 +131,9 @@ class Ui_MainWindow(object):
         
         targetValue = []
 
-        while (originValue >= 0.99):
-            mod = str(originValue % targetBase) # TO-DO: configure .__floor__ for mod (currently returns object)
+        while (originValue >= 0.99): 
+            mod = originValue % targetBase
+            mod = mod.__floor__()
             targetValue.append(mod)
             originValue = originValue / targetBase
 
@@ -161,6 +162,7 @@ class Ui_MainWindow(object):
 
 
 
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -170,3 +172,4 @@ if __name__ == "__main__":
     MainWindow.show()
     sys.exit(app.exec_())
 
+    # TO-DO: add error handling for invalid input
