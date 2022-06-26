@@ -119,9 +119,7 @@ class Ui_MainWindow(object):
 
     # = (base 9) 38
 
-    # && reconfig for integers
-
-    def convert(self):
+    def convert(self): # TO-DO: this method is shooting blanks in the target line
         originValue = float(self.originLine.text())
         originBase = float(self.originSpinBox.value())
         targetBase = float(self.targetSpinBox.value())
@@ -129,15 +127,15 @@ class Ui_MainWindow(object):
         if(originBase != 10):
             originValue = self.convertToBase10()
         
-        targetValue = []
+        targetValue = ''
 
         while (originValue >= 0.99): 
             mod = originValue % targetBase
             mod = mod.__floor__()
-            targetValue.append(mod)
+            targetValue.__add__(str(mod))
             originValue = originValue / targetBase
 
-        targetValue.reverse()
+        targetValue = targetValue[::-1]
 
         print(targetValue)
         result = targetValue
