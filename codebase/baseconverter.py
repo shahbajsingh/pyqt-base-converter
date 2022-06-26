@@ -100,26 +100,16 @@ class Ui_MainWindow(object):
         self.baseLabel.setText(_translate("MainWindow", "Base:"))
         self.toLabel.setText(_translate("MainWindow", "to"))
 
+
+
+
     def submitted(self):
         self.targetLine.setText(str(self.convert()))
 
-    # TO-DO: Fix conversion method, for example (base 6) 55 to (base 9)
-    # Base 6 to decimal calculation:
 
-    # (base 6) 55 = (5 × 6^1) + (5 × 6^0) = (base 10) 35
 
-    # Decimal to base 9 calculation:
 
-    # Divide by the base to get the digits from the remainders:
-
-    # 35 % 9 = 8
-    # 3 % 9 = 3
-
-    # store in list -> reverse
-
-    # = (base 9) 38
-
-    def convert(self): # TO-DO: this method is shooting blanks in the target line
+    def convert(self):
         originValue = float(self.originLine.text())
         originBase = float(self.originSpinBox.value())
         targetBase = float(self.targetSpinBox.value())
@@ -132,7 +122,7 @@ class Ui_MainWindow(object):
         while (originValue >= 0.99): 
             mod = originValue % targetBase
             mod = mod.__floor__()
-            targetValue.__add__(str(mod))
+            targetValue = targetValue + str(mod)
             originValue = originValue / targetBase
 
         targetValue = targetValue[::-1]
@@ -141,6 +131,9 @@ class Ui_MainWindow(object):
         result = targetValue
         
         return result
+
+
+
 
     def convertToBase10(self):
         originValue = self.originLine.text()
