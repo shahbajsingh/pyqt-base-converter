@@ -78,6 +78,9 @@ class Ui_MainWindow(object):
         self.originLine.setPlaceholderText("")
         self.originLine.setObjectName("originLine")
 
+        self.onlyInt = QtGui.QIntValidator()  # restrict input to only integers
+        self.originLine.setValidator(self.onlyInt)
+
         self.targetLine = QtWidgets.QLineEdit(self.centralwidget)
         self.targetLine.setGeometry(QtCore.QRect(80, 120, 131, 21))
         self.targetLine.setReadOnly(True)
@@ -164,5 +167,5 @@ if __name__ == "__main__":
     sys.exit(app.exec_())
 
     # TO-DO: 
-    # add error handling for invalid input
     # configure numbering for base 11 and beyond
+    # configure input for floats
